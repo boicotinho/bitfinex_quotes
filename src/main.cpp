@@ -1,5 +1,5 @@
 #include <pybind11/pybind11.h>
-#include <ktv/bitfinex.h>
+#include <bitfinex/bitfinex.h>
 
 #define STRINGIFY(x) #x
 #define MACRO_STRINGIFY(x) STRINGIFY(x)
