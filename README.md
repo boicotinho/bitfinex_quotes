@@ -1,6 +1,34 @@
+# bitfinex_quotes Python module
+
+## Installation
+
+Prerequisites:
+    cmake  >= 3.4
+    python >= 3.6
+    gcc    >= 4.8
+    pip 10+
+
+Centos8 :
+    sudo yum install -y cmake platform-python-devel
+
+Centos7:
+    sudo yum install -y cmake rh-python36
+    source /opt/rh/rh-python36/enable
+
+
+git clone --recurse-submodules https://github.com/boicotinho/bitfinex_quotes.git
+pip3 install ./bitfinex_quotes --user
+
+python3 -c "import bitfinex_quotes as m; print('RESULT m.add(1, 2) = ' + str(m.add(1, 2)))"
+
+pip3 uninstall -y bitfinex_quotes
+
+
+TODO: Adapt doc to bitfinex_quotes
+
+
 # cmake_example for pybind11
 
-TODO: cmake_example -> bitfinex_quotes
 
 [![Gitter][gitter-badge]][gitter-link]
 

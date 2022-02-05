@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.4...3.18)
 project(bitfinex_quotes)
 
-set(CMAKE_VERBOSE_MAKEFILE ON)
+#set(CMAKE_VERBOSE_MAKEFILE ON)
 
 add_subdirectory(extern/pybind11)
 pybind11_add_module(bitfinex_quotes src/main.cpp src/f2.cpp)
