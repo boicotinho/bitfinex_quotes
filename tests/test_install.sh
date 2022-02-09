@@ -7,7 +7,7 @@ source /opt/rh/rh-python36/enable
 pip3 install ${ROOT_DIR} --user
 
 echo "===== Running Test ====="
-python3 -c "import bitfinex_quotes as m; print('RESULT m.add(1, 2) = ' + str(m.add(1, 2)))"
+python3 ${ROOT_DIR}/tests/test_code_snippet.py
 echo "===== Test exit code: $?"
 
 pip3 uninstall -y bitfinex_quotes
