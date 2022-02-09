@@ -1,6 +1,7 @@
 # bitfinex_quotes Python module
+ @ Fabio Fernandes
 
-## Installation
+## Tools
 
 Prerequisites:
     cmake  >= 3.4
@@ -8,7 +9,7 @@ Prerequisites:
     gcc    >= 4.8
     pip 10+
     boost 1.75
-    OpenSSL (openssl-devel)
+    OpenSSL
 
 Centos8 :
     sudo yum install -y cmake platform-python-devel openssl-devel
@@ -25,31 +26,18 @@ Centos7:
     make -j$(nproc)
     sudo make install
 
-    Boost:
+    Boost from source:
     git clone --recursive https://github.com/boostorg/boost.git   # 28 minutes
     cd boost
     ./bootstrap.sh # 22 seconds. Alternatively specify a local dir, --prefix=/home/fabio/dev/dist/
     ./b2 # 2 minutes
     sudo./b2 install
+## Build & Test
 
 git clone --recurse-submodules https://github.com/boicotinho/bitfinex_quotes.git
+
 pip3 install ./bitfinex_quotes --user
 
-python3 -c "import bitfinex_quotes as m; print('RESULT m.add(1, 2) = ' + str(m.add(1, 2)))"
+python3 bitfinex_quotes/tests/test_code_snippet.py
 
 pip3 uninstall -y bitfinex_quotes
-
-
-TODO: Adapt doc to bitfinex_quotes
-
-## Test call
-
-```python
-import bitfinex_quotes
-
-```
-
-[`cibuildwheel`]:          https://cibuildwheel.readthedocs.io
-[FAQ]: http://pybind11.rtfd.io/en/latest/faq.html#working-with-ancient-visual-studio-2009-builds-on-windows
-[vs2015_runtime]: https://www.microsoft.com/en-us/download/details.aspx?id=48145
-[scikit-build]: https://scikit-build.readthedocs.io/en/latest/

@@ -4,7 +4,7 @@ project(bitfinex_quotes)
 #set(CMAKE_VERBOSE_MAKEFILE ON)
 
 add_subdirectory(extern/pybind11)
-pybind11_add_module(bitfinex_quotes src/main.cpp src/f2.cpp)
+pybind11_add_module(bitfinex_quotes src/main.cpp)
 
 add_subdirectory(extern/bitfinex_cpp)
 target_link_libraries(bitfinex_quotes LINK_PUBLIC bitfinex)
