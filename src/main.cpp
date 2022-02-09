@@ -1,12 +1,3 @@
-/*
-git clone --recurse-submodules https://github.com/boicotinho/bitfinex_quotes.git
-
-pip3 install ./bitfinex_quotes --user
-
-python3 bitfinex_quotes/tests/test_code_snippet.py
-
-pip3 uninstall -y bitfinex_quotes
-*/
 #include <pybind11/pybind11.h>
 #include <bitfinex/market_data_feed.h>
 #include <vector>
@@ -108,8 +99,6 @@ PYBIND11_MODULE(bitfinex_quotes, m) {
         .. autosummary::
            :toctree: _generate
 
-           TODO: class doc,
-           TODO: member doc,
     )pbdoc";
 
     py::class_<PyQuotes>(m, "Quotes")
@@ -123,10 +112,6 @@ PYBIND11_MODULE(bitfinex_quotes, m) {
         .def("best_bid_volume", &PyQuotes::best_bid_volume, "!", py::arg("depth") = 0)
         .def("best_ask_volume", &PyQuotes::best_ask_volume, "!", py::arg("depth") = 0)
 
-//      .def("best_bid_price",  &PyQuotes::best_bid_price)
-//      .def("best_ask_price",  &PyQuotes::best_ask_price)
-//      .def("best_bid_volume", &PyQuotes::best_bid_volume)
-//      .def("best_ask_volume", &PyQuotes::best_ask_volume);
         ;
 
 #ifdef VERSION_INFO
