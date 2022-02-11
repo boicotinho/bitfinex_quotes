@@ -5,4 +5,4 @@
 [submodule "extern/bitfinex_cpp"]
 	path = extern/bitfinex_cpp
 	url = https://github.com/boicotinho/bitfinex_cpp.git
-	branch = master
+	branch = diag

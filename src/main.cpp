@@ -11,18 +11,25 @@ class PyQuotes
 public:
     PyQuotes(std::string const& symbol)
     {
+        fprintf(stderr, "PyQuotes(%s) called.\n", symbol.c_str());
         m_subscription.config.symbol = symbol;
+    }
+
+    ~PyQuotes()
+    {
+        fprintf(stderr, "~PyQuotes() called.\n");
     }
 
     void subscribe()
     {
+        fprintf(stderr, "subscribe() called.\n");
         if(m_subscription.book_ptr)
             std::runtime_error("bitfinex_quotes Quotes book is already subscribed; "
                 + m_subscription.config.symbol );
 
         if(!m_md_feed.is_started())
         {
-            // fprintf(stderr, "Starting Bitfinex feed...\n");
+            fprintf(stderr, "Starting Bitfinex feed...\n");
             m_md_feed.start_recv_thread();
         }
 
@@ -34,6 +41,7 @@ public:
 
     void unsubscribe()
     {
+        fprintf(stderr, "unsubscribe() called.\n");
         auto const chanId = safe_book().channel_id();
         m_md_feed.unsubscribe(chanId);
         m_subscription.book_ptr.reset();
