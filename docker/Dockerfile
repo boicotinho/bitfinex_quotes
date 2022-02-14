@@ -2,7 +2,7 @@
 
 FROM ubuntu:20.04
 
-MAINTAINER Fabio Fernandes version: 0.3 (Ubuntu)
+MAINTAINER Fabio Fernandes version: 0.4 (Ubuntu)
 
 RUN apt-get update
 
@@ -17,13 +17,14 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
 	apt-utils \
 	vim \
 	strace \
+	gdb \
 	build-essential \
 	python3 \
 	python3-dev \
 	python3-pip \
 	libssl-dev \
 	git \
-	libboost-all-dev 
+	libboost-all-dev
 
 WORKDIR /app
 COPY . /app
@@ -33,4 +34,4 @@ RUN git clone --recursive https://github.com/boicotinho/bitfinex_quotes.git && \
 	pip3 install ./bitfinex_quotes --user
 
 # Running test, doesn't have to be done from dockerfile
-# CMD ["python3", "bitfinex_quotes/tests/test_code_snippet.py"]
+CMD ["python3", "bitfinex_quotes/tests/test_code_snippet.py"]
