@@ -3,6 +3,9 @@ project(bitfinex_quotes)
 
 #set(CMAKE_VERBOSE_MAKEFILE ON)
 
+# Propagates to bitfinex_cpp
+add_compile_options(-march=native -mtune=native) # core-avx2
+
 add_subdirectory(extern/pybind11)
 pybind11_add_module(bitfinex_quotes src/main.cpp)
 
