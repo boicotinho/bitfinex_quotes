@@ -29,9 +29,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
 WORKDIR /app
 COPY . /app
 
-# finally, bitfinex_quotes (python)
-RUN git clone --recursive https://github.com/boicotinho/bitfinex_quotes.git && \
-	pip3 install ./bitfinex_quotes --user
+# finally, market_py2cpp (python)
+RUN git clone --recursive https://github.com/boicotinho/market_py2cpp.git && \
+	pip3 install ./market_py2cpp --user
 
 # Running test, doesn't have to be done from dockerfile
-CMD ["python3", "bitfinex_quotes/tests/test_code_snippet.py"]
+CMD ["python3", "market_py2cpp/tests/test_code_snippet.py"]

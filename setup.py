@@ -120,13 +120,13 @@ class CMakeBuild(build_ext):
 # The information here can also be placed in setup.cfg - better separation of
 # logic and declaration, and simpler if you include description/version in a file.
 setup(
-    name="bitfinex_quotes",
+    name="market_py2cpp",
     version="0.0.1",
     author="Fabio Fernandes",
     author_email="boicotinho@protonmail.com",
     description="Python interface for bitfinex_cpp, a Bitfinex C++ order book",
     long_description="",
-    ext_modules=[CMakeExtension("bitfinex_quotes")],
+    ext_modules=[CMakeExtension("market_py2cpp")],
     cmdclass={"build_ext": CMakeBuild},
     zip_safe=False,
     extras_require={"test": ["pytest>=6.0"]},

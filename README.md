@@ -1,4 +1,4 @@
-# bitfinex_quotes Python module
+# market_py2cpp Python module
  @ Fabio Fernandes
 
 ## Tools
@@ -34,10 +34,10 @@ Centos7:
     sudo./b2 install
 ## Build & Test
 
-git clone --recurse-submodules https://github.com/boicotinho/bitfinex_quotes.git
+git clone --recurse-submodules https://github.com/boicotinho/market_py2cpp.git
 
-pip3 install ./bitfinex_quotes --user
+pip3 install ./market_py2cpp --user
 
-python3 bitfinex_quotes/tests/test_code_snippet.py
+python3 market_py2cpp/tests/test_code_snippet.py
 
-pip3 uninstall -y bitfinex_quotes
+pip3 uninstall -y market_py2cpp

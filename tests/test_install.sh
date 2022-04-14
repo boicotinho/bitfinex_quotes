@@ -10,4 +10,4 @@ echo "===== Running Test ====="
 python3 ${ROOT_DIR}/tests/test_code_snippet.py
 echo "===== Test exit code: $?"
 
-pip3 uninstall -y bitfinex_quotes
+pip3 uninstall -y market_py2cpp

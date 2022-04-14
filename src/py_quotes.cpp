@@ -1,5 +1,5 @@
 #include <pybind11/pybind11.h>
-#include <bitfinex/market_data_feed.h>
+#include <marketlinks/bitfinex/market_data_feed.h>
 #include <vector>
 #include <stdio.h>
 
@@ -17,7 +17,7 @@ public:
     void subscribe()
     {
         if(m_subscription.book_ptr)
-            std::runtime_error("bitfinex_quotes Quotes book is already subscribed; "
+            std::runtime_error("market_py2cpp Quotes book is already subscribed; "
                 + m_subscription.config.symbol );
 
         if(!m_md_feed.is_started())
@@ -28,7 +28,7 @@ public:
 
         m_subscription.book_ptr = m_md_feed.subscribe(m_subscription.config);
         if(!m_subscription.book_ptr)
-            std::runtime_error("bitfinex_quotes Quotes failed to subscribe; "
+            std::runtime_error("market_py2cpp Quotes failed to subscribe; "
                 + m_subscription.config.symbol );
     }
 
@@ -69,7 +69,7 @@ private:
     const bitfinex::level_based::OrderBookP& safe_book() const
     {
         if(!m_subscription.book_ptr)
-            std::runtime_error("bitfinex_quotes Quotes book is not yet subscribed; "
+            std::runtime_error("market_py2cpp Quotes book is not yet subscribed; "
                 + m_subscription.config.symbol);
         return *m_subscription.book_ptr;
     }
@@ -89,12 +89,12 @@ private:
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(bitfinex_quotes, m) {
+PYBIND11_MODULE(market_py2cpp, m) {
     m.doc() = R"pbdoc(
         Bitfinex python binding
         -----------------------
 
-        .. currentmodule:: bitfinex_quotes
+        .. currentmodule:: market_py2cpp
 
         .. autosummary::
            :toctree: _generate

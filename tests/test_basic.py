@@ -1,4 +1,4 @@
-from bitfinex_quotes import Quotes # this should be implemented in C++
+from market_py2cpp import Quotes # this should be implemented in C++
 import time
 
 def test_main():
