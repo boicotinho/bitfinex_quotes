@@ -3,8 +3,6 @@
 #include <vector>
 #include <stdio.h>
 
-#define STRINGIFY(x) #x
-#define MACRO_STRINGIFY(x) STRINGIFY(x)
 
 class PyQuotes
 {
@@ -87,36 +85,17 @@ private:
 };
 
 
-namespace py = pybind11;
-
-PYBIND11_MODULE(market_py2cpp, m) {
-    m.doc() = R"pbdoc(
-        Bitfinex python binding
-        -----------------------
-
-        .. currentmodule:: market_py2cpp
-
-        .. autosummary::
-           :toctree: _generate
-
-    )pbdoc";
-
+void py_define_quotes(pybind11::module& m)
+{
+    namespace py = pybind11;
     py::class_<PyQuotes>(m, "Quotes")
-        .def(py::init<const std::string &>())
-        .def("subscribe",       &PyQuotes::subscribe)
-        .def("unsubscribe",     &PyQuotes::unsubscribe)
-        .def("status",          &PyQuotes::status)
-
-        .def("best_bid_price",  &PyQuotes::best_bid_price,  "!", py::arg("depth") = 0)
-        .def("best_ask_price",  &PyQuotes::best_ask_price,  "!", py::arg("depth") = 0)
-        .def("best_bid_volume", &PyQuotes::best_bid_volume, "!", py::arg("depth") = 0)
-        .def("best_ask_volume", &PyQuotes::best_ask_volume, "!", py::arg("depth") = 0)
-
-        ;
-
-#ifdef VERSION_INFO
-    m.attr("__version__") = MACRO_STRINGIFY(VERSION_INFO);
-#else
-    m.attr("__version__") = "dev";
-#endif
+    .def(py::init<const std::string &>())
+    .def("subscribe",       &PyQuotes::subscribe)
+    .def("unsubscribe",     &PyQuotes::unsubscribe)
+    .def("status",          &PyQuotes::status)
+    .def("best_bid_price",  &PyQuotes::best_bid_price,  "!", py::arg("depth") = 0)
+    .def("best_ask_price",  &PyQuotes::best_ask_price,  "!", py::arg("depth") = 0)
+    .def("best_bid_volume", &PyQuotes::best_bid_volume, "!", py::arg("depth") = 0)
+    .def("best_ask_volume", &PyQuotes::best_ask_volume, "!", py::arg("depth") = 0)
+    ;
 }

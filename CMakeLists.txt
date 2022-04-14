@@ -7,7 +7,12 @@ project(market_py2cpp)
 add_compile_options(-march=native -mtune=native) # core-avx2
 
 add_subdirectory(extern/pybind11)
-pybind11_add_module(market_py2cpp src/py_quotes.cpp)
+pybind11_add_module(market_py2cpp
+    src/module_main.cpp
+    src/py_quotes.cpp
+    src/py_marker.cpp
+    src/py_book.cpp
+    )
 
 add_subdirectory(extern/bitfinex_cpp)
 target_link_libraries(market_py2cpp LINK_PUBLIC bitfinex)

@@ -86,7 +86,11 @@
         "codecvt": "cpp",
         "forward_list": "cpp",
         "valarray": "cpp",
-        "charconv": "cpp"
+        "charconv": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "ranges": "cpp",
+        "stop_token": "cpp"
     },
     "C_Cpp.default.cppStandard": "c++11",
     "C_Cpp.default.cStandard": "c11",
