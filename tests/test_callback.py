@@ -1,4 +1,5 @@
 from market_py2cpp import Book, Marker
+import time
 
 #eng = Engine(cpus=[3, 4, 5])
 
@@ -11,12 +12,12 @@ def on_marker(oid, market, symbol, px, qx):
 m1 = Marker(oid      = 12345678,
             bid      = True,
             trigger  = 0.0002,
+            callback = on_marker,
             #books    = [b1,b3]
             )
-#callback = on_marker,
 
-def funky1(x):
-    return x + 3
+for _ in range(10):
+    time.sleep(1)
+    print('======')
 
-res = m1.func_arg(funky1)
-print(f'RETURN: {res}')
+m1.stop()
