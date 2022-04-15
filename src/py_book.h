@@ -2,6 +2,7 @@
 #include <memory>
 #include <functional>
 #include <string>
+#include <vector>
 #include <stdint.h>
 
 using OrderId        = uint64_t;
@@ -17,4 +18,5 @@ public:
     }
 };
 
-using PyBookPtr = std::shared_ptr<PyBook>;
+using PyBookPtr  = std::shared_ptr<PyBook>;
+using PyBookList = std::vector<PyBookPtr>;

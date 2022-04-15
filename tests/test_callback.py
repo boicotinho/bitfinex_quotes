@@ -14,7 +14,7 @@ m1 = cpp.Marker(cl_oid      = 12345678,
                 side        = cpp.BID,
                 price_delta = 0.0002,
                 callback    = on_marker,
-                books       = b1 # [b1,b2]
+                books       = [b1,b2]
                 )
 
 for _ in range(10):

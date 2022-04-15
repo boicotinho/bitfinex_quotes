@@ -1,6 +1,7 @@
 #include "py_book.h"
 #include <pybind11/pybind11.h>
 #include <pybind11/functional.h>
+#include <pybind11/stl.h>
 #include <marketlinks/bitfinex/market_data_feed.h>
 #include <vector>
 #include <thread>
@@ -14,7 +15,7 @@ public:
             , eSide          const  a_side
             , double         const  a_price_delta
             , MarkerCallback const& a_callback
-            , PyBookPtr      const& a_book
+            , PyBookList     const& a_books
             )
             : m_callback(a_callback)
             , m_thread([this](){this->run_thread();})
@@ -63,7 +64,7 @@ void py_define_marker(pybind11::module& m)
                   , eSide
                   , double
                   , MarkerCallback const&
-                  , PyBookPtr const&
+                  , PyBookList const&
                   > ()
                   , py::arg("cl_oid")
                   , py::arg("side")
