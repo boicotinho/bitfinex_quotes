@@ -6,15 +6,15 @@ import time
 b1 = cpp.Book(market='BINANCE',  symbol='BTC_USDT' ) # potentially arbitraged
 b2 = cpp.Book(market='BITFINEX', symbol='tBTCUSD' )
 
-def on_marker(oid, market, symbol, px, qx):
+def on_marker(cl_oid, side, market, symbol, px, qx):
     print('MARKER, CANCEL: %d px=%f qx=%f')
     # Cancel the order via python...
 
-m1 = cpp.Marker(oid      = 12345678,
-                side     = cpp.BID,
-                trigger  = 0.0002,
-                callback = on_marker,
-                #books    = [b1,b2]
+m1 = cpp.Marker(cl_oid      = 12345678,
+                side        = cpp.BID,
+                price_delta = 0.0002,
+                callback    = on_marker,
+                books       = b1 # [b1,b2]
                 )
 
 for _ in range(10):

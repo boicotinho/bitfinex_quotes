@@ -1,22 +1,20 @@
+#include "py_book.h"
 #include <pybind11/pybind11.h>
 #include <pybind11/functional.h>
 #include <marketlinks/bitfinex/market_data_feed.h>
 #include <vector>
 #include <thread>
+#include <memory>
 #include <functional>
 #include <stdio.h>
-
-using OrderId        = uint64_t;
-using MarkerCallback = std::function<int(int)>;
-enum class eSide { BID, ASK };
-
 class PyMarker
 {
 public:
-    PyMarker( OrderId        const  a_oid
+    PyMarker( OrderId        const  a_cl_oid
             , eSide          const  a_side
-            , double         const  a_trigger
+            , double         const  a_price_delta
             , MarkerCallback const& a_callback
+            , PyBookPtr      const& a_book
             )
             : m_callback(a_callback)
             , m_thread([this](){this->run_thread();})
@@ -57,7 +55,6 @@ private:
     volatile bool   m_quit {false};
 };
 
-
 void py_define_marker(pybind11::module& m)
 {
     namespace py = pybind11;
@@ -66,12 +63,14 @@ void py_define_marker(pybind11::module& m)
                   , eSide
                   , double
                   , MarkerCallback const&
+                  , PyBookPtr const&
                   > ()
-                  , py::arg("oid")
+                  , py::arg("cl_oid")
                   , py::arg("side")
-                  , py::arg("trigger")
+                  , py::arg("price_delta")
                   , py::arg("callback")
-                  )
+                  , py::arg("books")
+        )
     .def("stop",     &PyMarker::stop)
     .def("func_arg", &PyMarker::func_arg)
     //.def("best_bid_price",  &PyMarker::best_bid_price,  "!", py::arg("depth") = 0)

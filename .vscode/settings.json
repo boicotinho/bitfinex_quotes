@@ -96,4 +96,7 @@
     "C_Cpp.default.cStandard": "c11",
     "cmake.configureOnOpen": true,
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "cSpell.words": [
+        "pybind"
+    ],
 }
