@@ -8,12 +8,13 @@
 
 using OrderId        = uint64_t;
 using MarkerCallback = std::function<int(int)>;
+enum class eSide { BID, ASK };
 
 class PyMarker
 {
 public:
     PyMarker( OrderId        const  a_oid
-            , bool           const  a_bid
+            , eSide          const  a_side
             , double         const  a_trigger
             , MarkerCallback const& a_callback
             )
@@ -62,12 +63,12 @@ void py_define_marker(pybind11::module& m)
     namespace py = pybind11;
     py::class_<PyMarker>(m, "Marker")
     .def( py::init< OrderId
-                  , bool
+                  , eSide
                   , double
                   , MarkerCallback const&
                   > ()
                   , py::arg("oid")
-                  , py::arg("bid")
+                  , py::arg("side")
                   , py::arg("trigger")
                   , py::arg("callback")
                   )
@@ -75,4 +76,9 @@ void py_define_marker(pybind11::module& m)
     .def("func_arg", &PyMarker::func_arg)
     //.def("best_bid_price",  &PyMarker::best_bid_price,  "!", py::arg("depth") = 0)
     ;
+
+    py::enum_<eSide>(m, "eSide")
+    .value("BID", eSide::BID)
+    .value("ASK", eSide::ASK)
+    .export_values();
 }
